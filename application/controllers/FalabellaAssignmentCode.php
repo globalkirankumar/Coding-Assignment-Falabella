@@ -60,14 +60,24 @@ class FalabellaAssignmentCode extends CI_Controller
         echo $this->unit->run($test, 'is_string',$test_name);
     }
     
-	public function testEndGreaterThanStart()
+    public function testEndNOLessThanStartNO()
     {
-       $start_no=1;
+        $start_no=5;
+        $end_no=1;
+        $test=$this->printNumbers($start_no,$end_no);
+        $expected_result='';
+        $test_name="End number is less than Start number";
+        echo $this->unit->run($test,$expected_result,$test_name);
+    }
+    
+    public function testParmNegativeValue()
+    {
+        $start_no=-1;
         $end_no=6;
         $test=$this->printNumbers($start_no,$end_no);
-        $expected_result=($end_no>=$start_no)?true:false;
-        $test_name="End number is greater than Start number";
-        echo $this->unit->run($test, 'is_true',$test_name);
+        $expected_result='';
+        $test_name="Any parameters value may be less than zero";
+        echo $this->unit->run($test,$expected_result,$test_name);
     }
 	
     public function testIsModulesOfThree()
