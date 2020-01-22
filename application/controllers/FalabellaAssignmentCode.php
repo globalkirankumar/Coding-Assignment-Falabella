@@ -15,7 +15,7 @@ class FalabellaAssignmentCode extends CI_Controller
     private function printNumbers($start_no=1,$end_no=100)
     {
         $result='';
-        if($start_no>0 && $end_no>0)
+        if($start_no>0 && $end_no>0 && $end_no>=$start_no)
         {
             for($i=$start_no;$i<=$end_no;$i++)
             {
@@ -60,6 +60,16 @@ class FalabellaAssignmentCode extends CI_Controller
         echo $this->unit->run($test, 'is_string',$test_name);
     }
     
+	public function testEndGreaterThanStart()
+    {
+       $start_no=1;
+        $end_no=6;
+        $test=$this->printNumbers($start_no,$end_no);
+        $expected_result=($end_no>=$start_no)?true:false;
+        $test_name="End number is greater than Start number";
+        echo $this->unit->run($test, 'is_true',$test_name);
+    }
+	
     public function testIsModulesOfThree()
     {
         $start_no=$end_no=3;
